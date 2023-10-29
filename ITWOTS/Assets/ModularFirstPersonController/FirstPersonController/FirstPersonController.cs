@@ -422,7 +422,7 @@ public class FirstPersonController : MonoBehaviour
                     sprintBarCG.alpha -= 3 * Time.deltaTime;
                 }
 
-                if (_walkSpeedCurrent <= walkSpeed && isGrounded == true) 
+                if (_walkSpeedCurrent <= walkSpeed) 
                 {
                     _walkSpeedCurrent = walkSpeed;
                 }
