@@ -24,11 +24,16 @@ public class PlayerMovement : MonoBehaviour
 	public float runSpeed = 10f;
     public float jumpCooldown = 0.25f;
     public float jumpForce = 550f;
+	public float dashSpeed = 1000f;
+    public float maxVelocityChange = 10f;
+    public float dashDuration = 5f;
     public bool grounded;
 	public bool onWall;
 
     //Private Floats
+    private float dashRemaining;
     private float wallRunGravity = 1f;
+	private float _walkSpeedCurrent = 0;
 	private float maxSlopeAngle = 35f;
 	private float wallRunRotation;
     private float slideSlowdown = 0.2f;
@@ -55,6 +60,8 @@ public class PlayerMovement : MonoBehaviour
 	private bool cancellingGrounded;
 	private bool cancellingWall;
 	private bool cancellingSurf;
+	private bool isDashCooldown = false;
+	private bool isDashing = false;
 
     //Private Vector3's
 	private Vector3 grapplePoint;
@@ -62,6 +69,7 @@ public class PlayerMovement : MonoBehaviour
 	private Vector3 wallNormalVector;
 	private Vector3 wallRunPos;
 	private Vector3 previousLookdir;
+	private Vector3 targetVelocity;
 
     //Private int
 	private int nw;
@@ -94,7 +102,68 @@ public class PlayerMovement : MonoBehaviour
 	{
         //For moving
 		Movement();
-	}
+
+        // All movement calculations while dash is active
+        if (Input.GetKey(KeyCode.LeftShift) && !isDashCooldown)
+        {
+            dashRemaining -= 5 * Time.deltaTime;
+            if (dashRemaining <= 0)
+            {
+                isDashing = false;
+                isDashCooldown = true;
+            }
+
+            targetVelocity = transform.TransformDirection(targetVelocity) * 2 * dashSpeed;
+
+            _walkSpeedCurrent = dashSpeed;
+
+            // Apply a force that attempts to reach our target velocity
+            Vector3 velocity = rb.velocity;
+            Vector3 velocityChange = (targetVelocity - velocity);
+            velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
+            velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange, maxVelocityChange);
+            velocityChange.y = 0;
+
+            // Player is only moving when valocity change != 0
+            // Makes sure fov change only happens during movement
+            if (velocityChange.x != 0 || velocityChange.z != 0)
+            {
+                isDashing = true;
+            }
+
+            rb.AddForce(velocityChange, ForceMode.VelocityChange);
+        }
+        // All movement calculations while walking
+        else
+        {
+            isDashing = false;
+
+            dashRemaining = Mathf.Clamp(dashRemaining += 1 * Time.deltaTime, 0, dashDuration);
+
+            if (_walkSpeedCurrent <= walkSpeed)
+            {
+                _walkSpeedCurrent = walkSpeed;
+            }
+            {
+                _walkSpeedCurrent -= 5 * Time.deltaTime;
+            }
+
+            targetVelocity = transform.TransformDirection(targetVelocity) * _walkSpeedCurrent;
+
+            // Apply a force that attempts to reach our target velocity
+            Vector3 velocity = rb.velocity;
+            Vector3 velocityChange = (targetVelocity - velocity);
+            velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
+            velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange, maxVelocityChange);
+            velocityChange.y = 0;
+
+            rb.AddForce(velocityChange, ForceMode.VelocityChange);
+        }
+		if (isDashing)
+		{
+			MonoBehaviour.print ("Dash");
+		}
+    }
 
 	private void Update()
 	{
@@ -214,7 +283,6 @@ public class PlayerMovement : MonoBehaviour
 	{
         if ((grounded || wallRunning || surfing) && readyToJump)
 		{
-		    MonoBehaviour.print("jumping");
 		    Vector3 velocity = rb.velocity;
 		    readyToJump = false;
 		    rb.AddForce(Vector2.up * jumpForce * 1.5f);
