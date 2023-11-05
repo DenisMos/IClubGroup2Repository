@@ -19,11 +19,12 @@ public class PlayerMovement : MonoBehaviour
     [Header("MovementSettings")]
     //Movement Settings 
 	public float sensitivity = 50f;
-	public float moveSpeed = 4500f;
+	public float moveSpeed = 1000f;
 	public float walkSpeed = 20f;
 	public float runSpeed = 10f;
     public float jumpCooldown = 0.25f;
-    public float jumpForce = 550f;
+    public float jumpForce = 350f;
+    public float crouchForce = 1f;
     public bool grounded;
 	public bool onWall;
 
@@ -124,19 +125,18 @@ public class PlayerMovement : MonoBehaviour
     //Scale player down
 	private void StartCrouch()
 	{
-		float num = 400f;
 		base.transform.localScale = new Vector3(1f, 0.5f, 1f);
 		base.transform.position = new Vector3(base.transform.position.x, base.transform.position.y - 0.5f, base.transform.position.z);
 		if (rb.velocity.magnitude > 0.1f && grounded)
 		{
-			rb.AddForce(orientation.transform.forward * num);
+			rb.AddForce(orientation.transform.forward * crouchForce);
 		}
 	}
 
     //Scale player to original size
 	private void StopCrouch()
 	{
-		base.transform.localScale = new Vector3(1f, 1.5f, 1f);
+		base.transform.localScale = new Vector3(0.9f, 0.9f, 0.9f);
 		base.transform.position = new Vector3(base.transform.position.x, base.transform.position.y + 0.5f, base.transform.position.z);
 	}
 
@@ -360,9 +360,14 @@ public class PlayerMovement : MonoBehaviour
 	{
 		if (wallRunning)
 		{
+			jumpForce = 100f;
 			rb.AddForce(-wallNormalVector * Time.deltaTime * moveSpeed);
 			rb.AddForce(Vector3.up * Time.deltaTime * rb.mass * 100f * wallRunGravity);
 		}
+		else
+		{
+            jumpForce = 350f;
+        }
 	}
 
 	private bool IsFloor(Vector3 v)
