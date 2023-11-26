@@ -25,6 +25,10 @@ public class PlayerMovement : MonoBehaviour
     public float jumpCooldown = 0.25f;
     public float jumpForce = 350f;
     public float crouchForce = 1f;
+	public float _moveSpeedCurrent = 1000f;
+	public bool flagBlockDash = false; 
+	public float dashCurrent = 0;
+	public float dashCooldown = 0;
     public bool grounded;
 	public bool onWall;
 
@@ -93,8 +97,23 @@ public class PlayerMovement : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-        //For moving
+		//For moving
 		Movement();
+
+		if (flagBlockDash)
+		{
+            if (dashCurrent <= 55f)
+            {
+                flagBlockDash = false;
+            }
+        }
+		else
+		{
+            if (dashCurrent > 95f)
+            {
+                flagBlockDash = true;
+            }
+        }
 	}
 
 	private void Update()
@@ -120,6 +139,27 @@ public class PlayerMovement : MonoBehaviour
 		{
 			StopCrouch();
 		}
+		if (Input.GetKey(KeyCode.LeftShift) && !flagBlockDash)
+		{
+			StartDash();
+            dashCurrent += 100 * Time.deltaTime;
+        }
+		else
+		{
+			if (dashCurrent > 0)
+			{
+				dashCurrent -= 10 * Time.deltaTime;
+			}
+			else
+			{
+				dashCurrent = 0;
+			}
+
+            if (_moveSpeedCurrent > 1000)
+            {
+                _moveSpeedCurrent -= 5000 * Time.fixedDeltaTime;
+            }
+        }
 	}
 
     //Scale player down
@@ -199,9 +239,15 @@ public class PlayerMovement : MonoBehaviour
 			num4 = 0.7f;
 			num5 = 0.3f;
 		}
-		rb.AddForce(orientation.transform.forward * y * moveSpeed * Time.deltaTime * num4 * num5);
-		rb.AddForce(orientation.transform.right * x * moveSpeed * Time.deltaTime * num4);
+		rb.AddForce(orientation.transform.forward * y * _moveSpeedCurrent * Time.deltaTime * num4 * num5);
+		rb.AddForce(orientation.transform.right * x * _moveSpeedCurrent * Time.deltaTime * num4);
 	}
+
+	private void StartDash()
+	{
+		_moveSpeedCurrent = 25000f;
+		
+    }
 
     //Ready to jump again
 	private void ResetJump()
@@ -264,16 +310,16 @@ public class PlayerMovement : MonoBehaviour
 		float num2 = 0.01f;
 		if (crouching)
 		{
-			rb.AddForce(moveSpeed * Time.deltaTime * -rb.velocity.normalized * slideSlowdown);
+			rb.AddForce(_moveSpeedCurrent * Time.deltaTime * -rb.velocity.normalized * slideSlowdown);
 			return;
 		}
 		if ((Math.Abs(mag.x) > num2 && Math.Abs(x) < 0.05f) || (mag.x < 0f - num2 && x > 0f) || (mag.x > num2 && x < 0f))
 		{
-			rb.AddForce(moveSpeed * orientation.transform.right * Time.deltaTime * (0f - mag.x) * num);
+			rb.AddForce(_moveSpeedCurrent * orientation.transform.right * Time.deltaTime * (0f - mag.x) * num);
 		}
 		if ((Math.Abs(mag.y) > num2 && Math.Abs(y) < 0.05f) || (mag.y < 0f - num2 && y > 0f) || (mag.y > num2 && y < 0f))
 		{
-			rb.AddForce(moveSpeed * orientation.transform.forward * Time.deltaTime * (0f - mag.y) * num);
+			rb.AddForce(_moveSpeedCurrent * orientation.transform.forward * Time.deltaTime * (0f - mag.y) * num);
 		}
 		if (Mathf.Sqrt(Mathf.Pow(rb.velocity.x, 2f) + Mathf.Pow(rb.velocity.z, 2f)) > walkSpeed)
 		{
@@ -361,7 +407,7 @@ public class PlayerMovement : MonoBehaviour
 		if (wallRunning)
 		{
 			jumpForce = 100f;
-			rb.AddForce(-wallNormalVector * Time.deltaTime * moveSpeed);
+			rb.AddForce(-wallNormalVector * Time.deltaTime * _moveSpeedCurrent);
 			rb.AddForce(Vector3.up * Time.deltaTime * rb.mass * 100f * wallRunGravity);
 		}
 		else
