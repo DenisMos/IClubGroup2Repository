@@ -1,0 +1,86 @@
+newmtl MOD_CupcakeNEW_pskmat0
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd NewCupcake__Base_Color.png
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 96.08
+newmtl initialShadingGroup
+illum 4
+Kd 0.50 0.50 0.50
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+newmtl lambert2SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd FNaF1Poster.png
+Ni 1.00
+newmtl lambert3SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd wall_base.png
+bump  -bm 1 wall_Normal.png
+Ni 1.00
+newmtl lambert4SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd FreddyPoster.png
+Ni 1.00
+newmtl lambert5SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Seamless_White_Brick_Texture.jpg
+bump  -bm 1 Seamless_White_Brick_Texture_NORMAL.jpg
+Ni 1.00
+newmtl lambert6SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Tile1_base.png
+Ni 1.00
+newmtl lambert7SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Tile3_base.png
+Ni 1.00
+newmtl lambert8SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Wood_Planks_009_COLOR.jpg
+bump  -bm 1 Wood_Planks_009_NORM.jpg
+Ni 1.00
+Ks 0.00 0.00 0.00
+map_Ks Wood_Planks_009_ROUGH.jpg
+Ns 18.00
+newmtl phong1SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Tile2_base.png
+Ni 1.00
+newmtl pskmat0_005
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd ENV_TEX_Desk_Fan_BaseColor.png
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 96.08
