@@ -245,7 +245,7 @@ public class PlayerMovement : MonoBehaviour
 
 	private void StartDash()
 	{
-		_moveSpeedCurrent = 25000f;
+		_moveSpeedCurrent = 10000f;
 		
     }
 
@@ -260,7 +260,6 @@ public class PlayerMovement : MonoBehaviour
 	{
         if ((grounded || wallRunning || surfing) && readyToJump)
 		{
-		    MonoBehaviour.print("jumping");
 		    Vector3 velocity = rb.velocity;
 		    readyToJump = false;
 		    rb.AddForce(Vector2.up * jumpForce * 1.5f);
@@ -391,7 +390,6 @@ public class PlayerMovement : MonoBehaviour
 
 	private void CancelWallrun()
 	{
-		MonoBehaviour.print("cancelled");
 		Invoke("GetReadyToWallrun", 0.1f);
 		rb.AddForce(wallNormalVector * 600f);
 		readyToWallrun = false;
@@ -509,6 +507,7 @@ public class PlayerMovement : MonoBehaviour
 			Invoke("StopSurf", Time.deltaTime * num);
 		}
 	}
+
 
 	private void StopGrounded()
 	{
