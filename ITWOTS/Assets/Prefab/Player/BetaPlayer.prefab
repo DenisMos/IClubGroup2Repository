@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1431233961342806983}
+  - component: {fileID: 3532896129484041851}
   m_Layer: 8
   m_Name: BetaPlayer
   m_TagString: Untagged
@@ -33,6 +34,18 @@ Transform:
   - {fileID: 4176951120787447530}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3532896129484041851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 856474732393369016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97ac15cbca146164b9ff761558b752b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &856765948312286830
 GameObject:
   m_ObjectHideFlags: 0
