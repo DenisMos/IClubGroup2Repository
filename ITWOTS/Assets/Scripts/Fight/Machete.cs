@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class Machete : MonoBehaviour
 {
-    private bool beat;
+    private Animator animator;
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
     void Update()
     {
-        beat = Input.GetButton("mouse 1");
+        if (Input.GetMouseButtonDown(0))
+        {
+            animator.SetTrigger("Machete");
+        }
     }
 }
