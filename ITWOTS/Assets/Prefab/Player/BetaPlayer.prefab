@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1431233961342806983}
   - component: {fileID: 3532896129484041851}
+  - component: {fileID: 6480223529045755307}
   m_Layer: 8
   m_Name: BetaPlayer
   m_TagString: Untagged
@@ -46,6 +47,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97ac15cbca146164b9ff761558b752b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6480223529045755307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 856474732393369016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cff09ad6ebe3c6c45996ae90ed9a720f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapons:
+  - {fileID: 2714791518037702097}
+  - {fileID: 0}
 --- !u!1 &856765948312286830
 GameObject:
   m_ObjectHideFlags: 0
@@ -601,9 +617,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1481529455715196, guid: 2aef0867f8e78cc4d9ad666f62942b1d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 318852883110592391}
-    - targetCorrespondingSourceObject: {fileID: 1481529455715196, guid: 2aef0867f8e78cc4d9ad666f62942b1d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 873311311562193294}
   m_SourcePrefab: {fileID: 100100000, guid: 2aef0867f8e78cc4d9ad666f62942b1d, type: 3}
 --- !u!4 &2713125879842666097 stripped
 Transform:
@@ -674,18 +687,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55ef8bf1a154d4e48b8bc2ef3c069a66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &873311311562193294
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2714841378239686817}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cff09ad6ebe3c6c45996ae90ed9a720f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weapons:
-  - {fileID: 2714791518037702097}
-  - {fileID: 0}
