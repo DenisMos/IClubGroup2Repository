@@ -7,6 +7,6 @@ public class Machete : MonoBehaviour
     private bool beat;
     void Update()
     {
-        beat = Input.GetButton("mouse 1");
+        beat = Input.GetMouseButtonDown(0);
     }
 }
