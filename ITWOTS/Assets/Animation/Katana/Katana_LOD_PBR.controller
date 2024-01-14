@@ -164,6 +164,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: Attack
     m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: Can Attack
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 4189857041784184085}
   m_Solo: 0
@@ -291,10 +294,10 @@ AnimatorStateMachine:
     m_Position: {x: 470, y: -190, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4189857041784184085}
-    m_Position: {x: 210, y: -230, z: 0}
+    m_Position: {x: 110, y: -230, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4435481655761052248}
-    m_Position: {x: 210, y: -300, z: 0}
+    m_Position: {x: 220, y: -300, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: -4905938766319721170}
@@ -405,6 +408,12 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: Can Attack
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 1
     m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
@@ -577,7 +586,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Attack1
-  m_Speed: 1
+  m_Speed: 0.6
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1348695037168280276}
@@ -604,7 +613,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Attack1_End
-  m_Speed: 1
+  m_Speed: 0.6
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -7300675561260152020}
