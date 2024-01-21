@@ -16,4 +16,19 @@ public class Katana : MonoBehaviour
             animator.SetTrigger("Attack");
         }
     }
+    public void AttEventF()
+    {
+        animator.SetBool("CanAttack", false);
+        animator.SetBool("CanAttack1", true);
+    }
+    public void AttEventT()
+    {
+        animator.SetBool("CanAttack", true);
+        animator.SetBool("CanAttack1", false);
+    }
+    public void AttEvent1F()
+    {
+        animator.SetBool("CanAttack1", false);
+    }
+
 }
