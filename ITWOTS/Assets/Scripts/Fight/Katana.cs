@@ -4,31 +4,37 @@ using UnityEngine;
 
 public class Katana : MonoBehaviour
 {
-    private Animator animator;
-    private void Start()
+    List<string> animList = new List<string>(new string[] {"Attack", "Attack1", "Attack2"});
+    public Animator animator;
+    public int combonum;
+    public float reset;
+    public float resettime;
+
+    private void Update()
     {
-        animator = GetComponent<Animator>();
-    }
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
+        if(Input.GetButton("Fire1") && combonum < 3)
         {
-            animator.SetTrigger("Attack");
+            animator.SetTrigger(animList[combonum]);
+            combonum++;
+            reset = 0f;
+        }
+        if(combonum > 0)
+        {
+            reset += Time.deltaTime;
+            if(reset > resettime)
+            {
+                animator.SetTrigger("Reset");
+                combonum = 0;  
+            }
+        }
+        if (combonum == 3)
+        {
+            resettime = 3f;
+            combonum = 0;
+        }
+        else
+        {
+            resettime = 1f;
         }
     }
-    public void AttEventF()
-    {
-        animator.SetBool("CanAttack", false);
-        animator.SetBool("CanAttack1", true);
-    }
-    public void AttEventT()
-    {
-        animator.SetBool("CanAttack", true);
-        animator.SetBool("CanAttack1", false);
-    }
-    public void AttEvent1F()
-    {
-        animator.SetBool("CanAttack1", false);
-    }
-
 }
