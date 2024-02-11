@@ -12,7 +12,7 @@ public class Katana : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetButton("Fire1") && combonum < 3)
+        if(Input.GetButtonDown("Fire1") && combonum < 3)
         {
             animator.SetTrigger(animList[combonum]);
             combonum++;
