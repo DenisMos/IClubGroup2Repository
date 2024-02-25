@@ -180,7 +180,7 @@ MonoBehaviour:
       BloomRes: 040000000200000002000000
       BloomHighQualityFiltering: 000101
       BloomHighQualityPrefiltering: 000001
-      ChromaticAberrationMaxSamples: 030000000c00000018000000
+      ChromaticAberrationMaxSamples: 050000000500000005000000
     lightSettings:
       useContactShadow:
         m_Values: 000001
