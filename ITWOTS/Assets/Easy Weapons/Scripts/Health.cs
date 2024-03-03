@@ -11,7 +11,8 @@ using System.Collections;
 
 public class Health : MonoBehaviour
 {
-	public bool canDie = true;					// Whether or not this health can die
+	public HealthBar healthbar;
+	public bool canDie = true;		// Whether or not this health can die
 	
 	public float startingHealth = 100.0f;		// The amount of health to start with
 	public float maxHealth = 100.0f;			// The maximum amount of health
