@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RGB : MonoBehaviour
 {
-    public MeshRenderer light;
+    public new MeshRenderer light;
 
     // Start is called before the first frame update
     void Start()
