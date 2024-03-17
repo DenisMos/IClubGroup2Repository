@@ -8,23 +8,20 @@ public class HealthBar : MonoBehaviour
     public float maxValue = 100;
     public Color color = Color.red;
     public int width = 4;
-    public Slider slider;
+    public Image slider;
     public bool isRight;
 
-    private static float current;
+    public float current;
 
     void Start()
     {
-        slider.fillRect.GetComponent<Image>().color = color;
-
-        slider.maxValue = maxValue;
-        slider.minValue = 0;
+       // slider.color = color;
         current = maxValue;
 
         UpdateUI();
     }
 
-    public static float currentValue
+    public float currentValue
     {
         get { return current; }
     }
@@ -33,33 +30,37 @@ public class HealthBar : MonoBehaviour
     {
         if (current < 0) current = 0;
         if (current > maxValue) current = maxValue;
-        slider.value = current;
+        slider.fillAmount = current / maxValue;
     }
-
+    public void UpdateHealth (float value) 
+    {
+        current = value;
+        UpdateUI();
+    }
     void UpdateUI()
     {
-        RectTransform rect = slider.GetComponent<RectTransform>();
+        //RectTransform rect = slider.GetComponent<RectTransform>();
 
-        int rectDeltaX = Screen.width / width;
-        float rectPosX = 0;
+        //int rectDeltaX = Screen.width / width;
+        //float rectPosX = 0;
 
-        if (isRight)
-        {
-            rectPosX = rect.position.x - (rectDeltaX - rect.sizeDelta.x) / 2;
-            slider.direction = Slider.Direction.RightToLeft;
-        }
-        else
-        {
-            rectPosX = rect.position.x + (rectDeltaX - rect.sizeDelta.x) / 2;
-            slider.direction = Slider.Direction.LeftToRight;
-        }
+        //if (isRight)
+        //{
+        //    rectPosX = rect.position.x - (rectDeltaX - rect.sizeDelta.x) / 2;
+        //    slider.direction = Slider.Direction.RightToLeft;
+        //}
+        //else
+        //{
+        //    rectPosX = rect.position.x + (rectDeltaX - rect.sizeDelta.x) / 2;
+        //    slider.direction = Slider.Direction.LeftToRight;
+        //}
 
-        rect.sizeDelta = new Vector2(rectDeltaX, rect.sizeDelta.y);
-        rect.position = new Vector3(rectPosX, rect.position.y, rect.position.z);
+        //rect.sizeDelta = new Vector2(rectDeltaX, rect.sizeDelta.y);
+        //rect.position = new Vector3(rectPosX, rect.position.y, rect.position.z);
     }
 
     public static void AdjustCurrentValue(float adjust)
     {
-        current += adjust;
+       // current += adjust;
     }
 }

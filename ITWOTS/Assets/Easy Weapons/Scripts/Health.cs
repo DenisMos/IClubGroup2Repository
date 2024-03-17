@@ -37,11 +37,14 @@ public class Health : MonoBehaviour
 
 	public void ChangeHealth(float amount)
 	{
-		// Change the health by the amount specified in the amount variable
-		currentHealth += amount;
 
-		// If the health runs out, then Die.
-		if (currentHealth <= 0 && !dead && canDie)
+        // Change the health by the amount specified in the amount variable
+        currentHealth += amount;
+
+        healthbar.UpdateHealth((float)currentHealth / (float)maxHealth);
+
+        // If the health runs out, then Die.
+        if (currentHealth <= 0 && !dead && canDie)
 			Die();
 
 		// Make sure that the health never exceeds the maximum health

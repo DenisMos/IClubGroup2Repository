@@ -47,13 +47,13 @@ public class EnemyAI : MonoBehaviour {
 	{
 		if(Physics.Linecast(transform.position,player.position, out hitPlayer, ~(lastPosLayer))) // Linecast towards the player ignoring the last position layer
 		{
-			Debug.Log(hitPlayer.collider.name);
+			//Debug.Log(hitPlayer.collider.name);
 
 			if(hitPlayer.collider.tag == "Player") // if the raycast hits the player then continue
 			{
 				playerSpotted = true; // Player has been spotted
 				Debug.DrawLine(transform.position, hitPlayer.point, Color.red); //Draw a red line from the enemy to the player
-				Debug.Log("гшлаза врага");
+				//Debug.Log("гшлаза врага");
 			} 
 			else // If the raycast doesn't hit the player then continue with ELSE
 			{ 
