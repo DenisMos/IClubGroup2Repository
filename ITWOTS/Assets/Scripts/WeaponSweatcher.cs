@@ -32,7 +32,6 @@ public class WeaponSweatcher : MonoBehaviour
         {
             if (i == index)
             {
-                Debug.Log($"{i} - {true}");
                 if (weapons[i] != null)
                 {
                     weapons[i].SetActive(true);
