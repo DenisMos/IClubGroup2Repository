@@ -11,7 +11,7 @@ public class AnimationTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("TriggerActivator"))
         {
             animator.SetTrigger(animationTriggerName);
         }
