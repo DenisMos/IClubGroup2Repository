@@ -45,11 +45,11 @@ public class EnemyAI : MonoBehaviour {
 	
 	void EnemyVision()
 	{
-		if(Physics.Linecast(transform.position,player.position, out hitPlayer, ~(lastPosLayer))) // Linecast towards the player ignoring the last position layer
+		if (Physics.Linecast(transform.position, player.position, out hitPlayer, ~(1 << 2))) // Linecast towards the player ignoring the last position layer
 		{
-			//Debug.Log(hitPlayer.collider.name);
-
-			if(hitPlayer.collider.tag == "Player") // if the raycast hits the player then continue
+            //Debug.Log(hitPlayer.collider.name);
+            Debug.DrawLine(transform.position, hitPlayer.point, Color.red);
+            if (hitPlayer.collider.tag == "Player") // if the raycast hits the player then continue
 			{
 				playerSpotted = true; // Player has been spotted
 				Debug.DrawLine(transform.position, hitPlayer.point, Color.red); //Draw a red line from the enemy to the player
