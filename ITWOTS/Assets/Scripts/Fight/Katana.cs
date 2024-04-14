@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Katana : MonoBehaviour
 {
-    List<string> animList = new List<string>(new string[] {"Attack", "Attack1", "Attack2"});
     public Animator animator;
     public int combonum;
     public float reset;
@@ -12,29 +11,9 @@ public class Katana : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetButtonDown("Fire1") && combonum < 3)
+        if(Input.GetButtonDown("Fire1"))
         {
-            animator.SetTrigger(animList[combonum]);
-            combonum++;
-            reset = 0f;
-        }
-        if(combonum > 0)
-        {
-            reset += Time.deltaTime;
-            if(reset > resettime)
-            {
-                animator.SetTrigger("Reset");
-                combonum = 0;  
-            }
-        }
-        if (combonum == 3)
-        {
-            resettime = 3f;
-            combonum = 0;
-        }
-        else
-        {
-            resettime = 1f;
+            animator.SetTrigger("Attack");
         }
     }
 }
