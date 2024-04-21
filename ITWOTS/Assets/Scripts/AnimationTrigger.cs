@@ -11,9 +11,19 @@ public class AnimationTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("TriggerActivator"))
+        if (other.GetComponentInChildren<PlayerMovement>(true) != null)
         {
             animator.SetTrigger(animationTriggerName);
         }
     }
+
+#if UNITY_EDITOR
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = new Color(1f, 1f, 1f, 0.4f);
+        Gizmos.DrawCube(transform.position, transform.localScale);
+    }
+
+#endif
 }
