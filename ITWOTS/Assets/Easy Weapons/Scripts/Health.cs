@@ -17,7 +17,7 @@ public class Health : MonoBehaviour
 	
 	public float startingHealth = 100.0f;		// The amount of health to start with
 	public float maxHealth = 100.0f;			// The maximum amount of health
-	private float currentHealth;				// The current ammount of health
+	public float currentHealth;				// The current ammount of health
 
 	public bool replaceWhenDead = false;		// Whether or not a dead replacement should be instantiated.  (Useful for breaking/shattering/exploding effects)
 	public GameObject deadReplacement;			// The prefab to instantiate when this GameObject dies
@@ -42,7 +42,7 @@ public class Health : MonoBehaviour
         // Change the health by the amount specified in the amount variable
         currentHealth += amount;
 
-        healthbar.UpdateHealth((float)currentHealth / (float)maxHealth);
+        healthbar?.UpdateHealth((float)currentHealth / (float)maxHealth);
 
         // If the health runs out, then Die.
         if (currentHealth <= 0 && !dead && canDie)
@@ -59,9 +59,9 @@ public class Health : MonoBehaviour
 		dead = true;
 
 		// Make death effects
-		if (replaceWhenDead)
+		if (replaceWhenDead && deadReplacement != null)
 			Instantiate(deadReplacement, transform.position, transform.rotation);
-		if (makeExplosion)
+		if (makeExplosion && explosion != null)
 			Instantiate(explosion, transform.position, transform.rotation);
 
 		if (isPlayer && deathCam != null)

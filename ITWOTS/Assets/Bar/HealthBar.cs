@@ -30,7 +30,11 @@ public class HealthBar : MonoBehaviour
     {
         if (current < 0) current = 0;
         if (current > maxValue) current = maxValue;
-        slider.fillAmount = current / maxValue;
+
+        if (slider != null)
+        {
+            slider.fillAmount = current / maxValue;
+        }
     }
     public void UpdateHealth (float value) 
     {
