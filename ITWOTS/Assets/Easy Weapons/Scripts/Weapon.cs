@@ -1040,7 +1040,7 @@ public class Weapon : MonoBehaviour
 		beamHeat -= Time.deltaTime;
 		if (beamHeat < 0)
 			beamHeat = 0;
-		GetComponent<AudioSource>().Stop();
+		GetComponent<AudioSource>()?.Stop();
 		
 		// Remove the visible beam effect GameObject
 		if (beamGO != null)
