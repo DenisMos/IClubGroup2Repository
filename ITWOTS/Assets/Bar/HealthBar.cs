@@ -33,6 +33,7 @@ public class HealthBar : MonoBehaviour
 
         if (slider != null)
         {
+            Debug.Log(current / maxValue);
             slider.fillAmount = current / maxValue;
         }
     }

@@ -80,11 +80,14 @@ public class EnemyAI : MonoBehaviour {
 				EnemyRotate(player.position); // Calls the rotate function sending the players position
 				GetComponent<Rigidbody>().MovePosition(Vector3.MoveTowards(transform.position, player.position, Time.deltaTime * speed)); // Move the enemy towards the players position
 				anim._animRun = true; // Enable the run animation
-			}
+                anim._animFig = false;
+            }
 			else 	// If the distance from the player is not greater than a number then continue
 			{
 				Debug.Log(player.name);
+
 				anim._animRun = false;
+				anim._animFig = true;
 			}
 		}
 		else if(FindLastPosition() != null) // If the player has NOT been spotted and a last position has been found then continue **FindLastPosition() returns a GameObject
