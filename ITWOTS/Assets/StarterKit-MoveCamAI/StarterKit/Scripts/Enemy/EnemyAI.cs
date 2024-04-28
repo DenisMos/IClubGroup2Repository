@@ -9,6 +9,8 @@ using System.Collections;
 
 public class EnemyAI : MonoBehaviour {
 
+	[SerializeField]
+	public ChangeHealth ChangeHealth;
 	public Transform player;
 	private CharacterAnimation anim;
 	private RaycastHit hitPlayer, left, right, forLeft, forRight;
@@ -28,7 +30,12 @@ public class EnemyAI : MonoBehaviour {
 	private float   avoidDist = 2f,
 					avoidAngleDist = 2f,
 					avoidSpeed = 100f;
-	
+
+	public void EnemyAtack(float damage)
+	{
+		var h = player.GetComponentInParent<Health>();
+		h.ChangeHealth(-damage);
+	}
 	void Start()
 	{
 		player = GameObject.FindGameObjectWithTag("Player").transform; // Find the player GameObject
@@ -36,12 +43,14 @@ public class EnemyAI : MonoBehaviour {
 	}
 	
 	// FixedUpdate is used for physics based movement
+	
 	void FixedUpdate ()
 	{
 		EnemyVision(); // Call the enemey vision function
 		EnemyMove(); // Call the enemy movement function
 		EnemyAvoid(); // Call the enemy avoidance function
-	}
+		
+    }
 	
 	void EnemyVision()
 	{
@@ -71,10 +80,14 @@ public class EnemyAI : MonoBehaviour {
 				EnemyRotate(player.position); // Calls the rotate function sending the players position
 				GetComponent<Rigidbody>().MovePosition(Vector3.MoveTowards(transform.position, player.position, Time.deltaTime * speed)); // Move the enemy towards the players position
 				anim._animRun = true; // Enable the run animation
-			}
+                anim._animFig = false;
+            }
 			else 	// If the distance from the player is not greater than a number then continue
 			{
-				anim._animRun = false; // Disable the run animation
+				Debug.Log(player.name);
+
+				anim._animRun = false;
+				anim._animFig = true;
 			}
 		}
 		else if(FindLastPosition() != null) // If the player has NOT been spotted and a last position has been found then continue **FindLastPosition() returns a GameObject
@@ -86,7 +99,7 @@ public class EnemyAI : MonoBehaviour {
 		}
 		else
 		{
-			anim._animRun = false; // Disable the run animation
+            anim._animRun = false; // Disable the run animation
 		}
 	}
 	
@@ -163,4 +176,8 @@ public class EnemyAI : MonoBehaviour {
 		}
 		return closestPosition; // Return the closestPosition game object that was found
 	}
+}
+
+public class ChangeHealth
+{
 }
